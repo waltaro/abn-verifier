@@ -1,2 +1,2 @@
 # abn-verifier
-An application built in Kotlin to verify your abn
+An ABN verifier built using Kotlin
