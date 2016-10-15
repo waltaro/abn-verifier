@@ -25,7 +25,6 @@ fun verifyAbn(abn : String, statusText : Text) {
 fun calcAbnWeight(abnInput : String) : Boolean {
 
     /* Constants */
-    val EXPECTED_INPUT_SIZE = 14
     val EXPECTED_ABN_SIZE = 11
     val DIVISOR = 89.0
 
@@ -33,9 +32,6 @@ fun calcAbnWeight(abnInput : String) : Boolean {
     val weightFactor = listOf<Int>(10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19)
     var abn = mutableListOf<Double>()
     var sum = 0.0
-
-    /* Precautionary check for initial input string */
-    if(abnInput.length != EXPECTED_INPUT_SIZE) return false
 
     /* Add abn numbers to the mutable list */
     abnInput.filter { it.isDigit() }

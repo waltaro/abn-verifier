@@ -13,6 +13,8 @@ import javafx.scene.text.Font
 import javafx.scene.text.FontWeight
 import javafx.scene.text.Text
 
+val INPUT_SIZE = 14
+
 fun createMainView() : GridPane {
 
     /* Create grid pane */
@@ -51,7 +53,7 @@ fun createMainView() : GridPane {
     gridPane.add(statusText,0,3)
 
     /* Disable button based on abn number field input */
-    verifyButton.disableProperty().bind(Bindings.length(abnNumberField.textProperty()).isEqualTo(0))
+    verifyButton.disableProperty().bind(Bindings.length(abnNumberField.textProperty()).isNotEqualTo(INPUT_SIZE))
 
     /* Call verify function when button pressed */
     verifyButton.setOnAction { verifyAbn(abnNumberField.text, statusText) }
