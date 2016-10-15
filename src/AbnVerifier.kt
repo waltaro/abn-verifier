@@ -1,4 +1,5 @@
 import javafx.application.Application
+import javafx.beans.binding.Bindings
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.Scene
@@ -74,6 +75,9 @@ class AbnVerifier : Application() {
         verifyButtonBox.alignment = Pos.BOTTOM_RIGHT
         verifyButtonBox.children.add(verifyButton)
         gridPane.add(verifyButtonBox, 1, 3)
+
+        /* Disable button based on abn number field input */
+        verifyButton.disableProperty().bind(Bindings.length(abnNumberField.textProperty()).isEqualTo(0))
 
         /* Add verify status text to grid pane */
         val status = Text("Status")
