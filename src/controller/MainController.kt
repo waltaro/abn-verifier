@@ -11,10 +11,10 @@ fun verifyAbn(abn : String, statusText : Text) {
     val isValidAbn = calcAbnWeight(abn)
 
     if(isValidAbn) {
-        statusText.text = "Valid"
+        statusText.text = "Valid ABN"
         statusText.fill = Color.GREEN
     }else {
-        statusText.text = "Invalid"
+        statusText.text = "Invalid ABN"
         statusText.fill = Color.FIREBRICK
     }
 }
