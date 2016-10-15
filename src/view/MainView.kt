@@ -56,8 +56,6 @@ fun createMainView() : GridPane {
     /* Call verify function when button pressed */
     verifyButton.setOnAction { verifyAbn(abnNumberField.text, statusText) }
 
-
-
     return gridPane
 
 }

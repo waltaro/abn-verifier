@@ -1,9 +1,58 @@
 package controller
 
+import javafx.scene.paint.Color
 import javafx.scene.text.Text
 
-fun verifyAbn(abn : String, statusText : Text) : Boolean {
-    println(abn)
-    statusText.text = abn
-    return false
+/**
+ * Verify ABN
+ */
+fun verifyAbn(abn : String, statusText : Text) {
+
+    val isValidAbn = calcAbnWeight(abn)
+
+    if(isValidAbn) {
+        statusText.text = "Valid"
+        statusText.fill = Color.GREEN
+    }else {
+        statusText.text = "Invalid"
+        statusText.fill = Color.FIREBRICK
+    }
+}
+
+/**
+ * Calculates ABN weight
+ */
+fun calcAbnWeight(abnInput : String) : Boolean {
+
+    /* Constants */
+    val EXPECTED_INPUT_SIZE = 14
+    val EXPECTED_ABN_SIZE = 11
+    val DIVISOR = 89.0
+
+    /* Stuff */
+    val weightFactor = listOf<Int>(10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19)
+    var abn = mutableListOf<Double>()
+    var sum = 0.0
+
+    /* Precautionary check for initial input string */
+    if(abnInput.length != EXPECTED_INPUT_SIZE) return false
+
+    /* Add abn numbers to the mutable list */
+    abnInput.filter { it.isDigit() }
+            .forEach { abn.add(Character.getNumericValue(it).toDouble()) }
+
+    /* Precautionary check for abn numbers */
+    if(abn.size != EXPECTED_ABN_SIZE) return false
+
+    /* Subtract 1 from the first digit */
+    abn[0]--
+
+    /* Do calculation */
+    for(i in 0..EXPECTED_ABN_SIZE - 1) {
+        sum += abn.get(i) * weightFactor.get(i)
+    }
+
+    /* Check to see if the ABN is valid */
+    if(sum % DIVISOR == 0.0) { return true } else { return false }
+
 }
