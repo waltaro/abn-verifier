@@ -46,15 +46,17 @@ fun createMainView() : GridPane {
     verifyButtonBox.children.add(verifyButton)
     gridPane.add(verifyButtonBox, 1, 3)
 
+    /* Add verify status text to grid pane */
+    val statusText = Text()
+    gridPane.add(statusText,0,3)
+
     /* Disable button based on abn number field input */
     verifyButton.disableProperty().bind(Bindings.length(abnNumberField.textProperty()).isEqualTo(0))
 
     /* Call verify function when button pressed */
-    verifyButton.setOnAction { verifyAbn(abnNumberField.text) }
+    verifyButton.setOnAction { verifyAbn(abnNumberField.text, statusText) }
 
-    /* Add verify status text to grid pane */
-    val status = Text("Status")
-    gridPane.add(status,0,3)
+
 
     return gridPane
 
